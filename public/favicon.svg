@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#171717"/>
+  <!-- "EB" monogram drawn as strokes so it renders the same on every OS (no font dependency). -->
+  <g fill="none" stroke="#fafafa" stroke-width="5" stroke-linejoin="miter" transform="translate(0.5 0)">
+    <path d="M27 22.5H15.5V41.5H27M15.5 32H25.5"/>
+    <path d="M33.5 41.5V22.5H41.5A4.625 4.625 0 0 1 41.5 31.75H33.5M33.5 31.75H42.5A4.875 4.875 0 0 1 42.5 41.5H33.5Z"/>
+  </g>
+</svg>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <meta name="author" content="{{meta.author}}" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{meta.title}}" />
+    <meta property="og:description" content="{{meta.socialDescription}}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{meta.title}}" />
+    <meta name="twitter:description" content="{{meta.socialDescription}}" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script>
+      // Apply the saved or system colour theme before first paint to avoid a flash.
+      ;(function () {
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        try {
+          var stored = localStorage.getItem('theme')
+          if (stored === 'dark' || stored === 'light') dark = stored === 'dark'
+        } catch (e) {}
+        document.documentElement.classList.toggle('dark', dark)
+        var meta = document.querySelector('meta[name="theme-color"]')
+        if (meta) meta.setAttribute('content', dark ? '#0a0a0a' : '#ffffff')
+      })()
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <main style="max-width: 40rem; margin: 0 auto; padding: 3rem 1rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1 style="font-size: 1.5rem; margin: 0 0 0.75rem">{{meta.noscriptHeading}}</h1>
+        <p style="margin: 0 0 0.75rem">{{meta.noscriptBody}}</p>
+        <ul style="margin: 0; padding-left: 1.25rem">
+          <li><a href="mailto:{{meta.email}}">{{meta.email}}</a></li>
+          <li><a href="{{meta.resumeUrl}}">{{meta.noscriptResume}}</a></li>
+        </ul>
+      </main>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
