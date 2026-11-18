@@ -1,0 +1,60 @@
+# Builds the portfolio and publishes it to GitHub Pages:
+#   https://kiel24k.github.io/kiel-portfolio-2026/
+# One-time setup: repo Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push does not cancel a deployment that is already running.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - id: pages
+        uses: actions/configure-pages@v6
+
+      # The project site lives under /<repo>/ (configure-pages reports "/kiel-portfolio-2026"),
+      # so assets, router basename and the résumé link are built for that sub-path.
+      # `npm run build` runs `tsc -b` first and also writes dist/404.html (SPA deep-link fallback).
+      - run: npm run build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+
+      - run: npm run lint
+
+      # Dotfiles are skipped by default; include them so dist/.nojekyll ships.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

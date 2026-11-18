@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useLocation, useNavigationType, type Location } from 'react-router'
-import { hashId, projectPath, projectSlugFromPath } from '@/lib/routes'
+import { hashId, projectPath, projectSlugFromPath, routeHref } from '@/lib/routes'
 
 const STORAGE_KEY = 'scroll-positions'
 /** React Router's key for history entries it did not create (first load, plain #fragment links). */
@@ -97,7 +97,9 @@ export function ScrollManager() {
       runNowAndAfterCommit(() => window.scrollTo(0, saved))
       const leftSlug = leftPathname ? projectSlugFromPath(leftPathname) : null
       if (leftSlug && leftPathname !== location.pathname) {
-        document.querySelector<HTMLElement>(`a[href="${projectPath(leftSlug)}"]`)?.focus({ preventScroll: true })
+        document
+          .querySelector<HTMLElement>(`a[href="${routeHref(projectPath(leftSlug))}"]`)
+          ?.focus({ preventScroll: true })
       }
       return
     }

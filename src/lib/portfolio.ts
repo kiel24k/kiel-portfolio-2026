@@ -1,4 +1,5 @@
 import type { Project, TechStack } from '@/data/types'
+import { joinBase } from '@/lib/base'
 
 export const stackGroupKeys = ['frontend', 'backend', 'database', 'devops', 'hardware'] as const
 export type StackGroupKey = (typeof stackGroupKeys)[number]
@@ -40,12 +41,11 @@ export function formatResults(project: Project): string {
 }
 
 /**
- * Resolves a public-folder path ("/resume/x.pdf" or "resume/x.pdf") against Vite's `base`,
- * so links keep working if the site is deployed under a subpath (e.g. GitHub Pages /repo/).
+ * Resolves a public-folder path ("/resume/x.pdf" or "resume/x.pdf") against Vite's `base`, so links
+ * work under the GitHub Pages sub-path (/kiel-portfolio-2026/). Data keeps base-agnostic paths.
  */
 export function publicUrl(path: string): string {
-  if (/^[a-z][a-z\d+.-]*:/i.test(path)) return path
-  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+  return joinBase(import.meta.env.BASE_URL, path)
 }
 
 export function getProjectBySlug(projects: Project[], slug: string | undefined): Project | undefined {

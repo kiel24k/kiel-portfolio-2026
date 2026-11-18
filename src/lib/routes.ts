@@ -1,8 +1,21 @@
 import type { MouseEvent } from 'react'
 import type { Path } from 'react-router'
 import { nav } from '@/data/site'
+import { joinBase } from '@/lib/base'
 
 const PROJECT_PREFIX = '/projects/'
+
+/**
+ * The router's basename: Vite's `base` ("/kiel-portfolio-2026/" on GitHub Pages, "/" locally). Route
+ * paths in this file stay root-relative; <Link>/navigate add the basename. The trailing slash is kept
+ * so links to the home page are "/kiel-portfolio-2026/" (GitHub Pages redirects the slash-less form).
+ */
+export const routerBasename: string = import.meta.env.BASE_URL
+
+/** The href a <Link to={path}> renders, e.g. `/projects/hris` -> `/kiel-portfolio-2026/projects/hris`. */
+export function routeHref(path: string): string {
+  return joinBase(import.meta.env.BASE_URL, path)
+}
 
 /** URL of a project's own page. */
 export function projectPath(slug: string): string {
