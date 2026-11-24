@@ -1,12 +1,12 @@
 ---
 name: add-portfolio-project
-description: Use when adding or updating a project, skill, education entry or profile detail on Kiel's portfolio (Frontend/src/data/portfolio.ts), including from Tagalog/Taglish notes or a new resume.
+description: Use when adding or updating a project, skill, education entry or profile detail on Kiel's portfolio (src/data/portfolio.ts), including from Tagalog/Taglish notes or a new resume.
 ---
 
 # Add or Update Portfolio Content
 
 Kiel's portfolio (React + TypeScript + Tailwind CSS + shadcn/ui, built with Vite) is driven by data.
-All content lives in `Frontend/src/data/portfolio.ts`, typed by `Frontend/src/data/types.ts`. Components
+All content lives in `src/data/portfolio.ts`, typed by `src/data/types.ts`. Components
 render that data automatically: a new project appears as a card in "Projects at a glance" on the home
 page and gets its own page at `/projects/<slug>` (sticky "Back to projects" bar, live-demo notice, full
 feature accordion, previous/next links in `projects` order). **You almost never need to touch a component.**
@@ -17,10 +17,10 @@ Paths below are relative to the repository root (`C:\Users\kiel\Desktop\Portfoli
 
 Read these in full first; the files are the source of truth, not this skill:
 
-- `Frontend/src/data/types.ts`: the exact interfaces (`Project`, `FeatureGroup`, `Stat`, `TechStack`,
+- `src/data/types.ts`: the exact interfaces (`Project`, `FeatureGroup`, `Stat`, `TechStack`,
   `ProjectKind`, `SkillGroup`, `Education`, `Profile`, `Portfolio`). If it differs from what this skill
   says, follow the file.
-- `Frontend/src/data/portfolio.ts`: current content, project order, and wording style to copy.
+- `src/data/portfolio.ts`: current content, project order, and wording style to copy.
 - Any source the owner gives you (notes `.txt`, resume PDF, chat message). Read it all, not just the
   start. Earlier sources live in `.agent-studio/uploads/`.
 
@@ -28,11 +28,11 @@ Know where things belong:
 
 | File | Holds | Edit it when |
 | --- | --- | --- |
-| `Frontend/src/data/portfolio.ts` | all portfolio content | almost always (the only file in most tasks) |
-| `Frontend/src/data/types.ts` | data interfaces | only if the owner asks for a new field or project kind |
-| `Frontend/src/data/site.ts` | UI copy: nav, headings, labels, `ui.kinds` | only for interface wording or a new `ProjectKind` |
-| `Frontend/public/resume/Ezekiel-Bermudez-Resume.pdf` | downloadable resume (`profile.resumeUrl`) | when the owner gives a new resume PDF (replace the file, keep the name) |
-| `Frontend/src/components/**` | rendering only | do not edit for content changes |
+| `src/data/portfolio.ts` | all portfolio content | almost always (the only file in most tasks) |
+| `src/data/types.ts` | data interfaces | only if the owner asks for a new field or project kind |
+| `src/data/site.ts` | UI copy: nav, headings, labels, `ui.kinds` | only for interface wording or a new `ProjectKind` |
+| `public/resume/Ezekiel-Bermudez-Resume.pdf` | downloadable resume (`profile.resumeUrl`) | when the owner gives a new resume PDF (replace the file, keep the name) |
+| `src/components/**` | rendering only | do not edit for content changes |
 
 Never put portfolio content in components or `site.ts`, and never put UI labels in `portfolio.ts`.
 
@@ -138,16 +138,16 @@ Copy what `portfolio.ts` already does:
 
 ## 5. Verify
 
-From the `Frontend` folder run both and fix every error or warning you introduced:
+From the repository root run both and fix every error or warning you introduced:
 
 ```bash
-cd "C:/Users/kiel/Desktop/Portfolio - 2026/Frontend" && npm run build
-cd "C:/Users/kiel/Desktop/Portfolio - 2026/Frontend" && npm run lint
+cd "C:/Users/kiel/Desktop/Portfolio - 2026" && npm run build
+cd "C:/Users/kiel/Desktop/Portfolio - 2026" && npm run lint
 ```
 
 `build` runs `tsc -b && vite build` (type check plus bundle), `lint` runs `oxlint`. Do not commit or
 push unless the owner asks: every push to `main` deploys the site to GitHub Pages
-(https://kiel24k.github.io/kiel-portfolio-2026/, via `Frontend/.github/workflows/deploy.yml`).
+(https://kiel24k.github.io/kiel-portfolio-2026/, via `.github/workflows/deploy.yml`).
 
 The live site is served from the sub-path `/kiel-portfolio-2026/`. Keep every path in `portfolio.ts`
 root-relative and base-agnostic (e.g. `resumeUrl: '/resume/Ezekiel-Bermudez-Resume.pdf'`, project pages

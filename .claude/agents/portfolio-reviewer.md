@@ -15,7 +15,7 @@ fix them without re-investigating.
   - **Content fidelity:** walk the source notes line by line and confirm every item appears in the data and is
     actually rendered by the UI (not hidden by a bug, a slice, or a missing map). Flag anything missing,
     merged, mistranslated, or invented (numbers, dates, links, claims not in the sources).
-  - **Build & code:** run `npm run build` and `npm run lint` (in the frontend folder) and report the exact errors.
+  - **Build & code:** run `npm run build` and `npm run lint` (in the project root, where package.json lives) and report the exact errors.
     Check types, dead code, hard-coded copy that belongs in data, shadcn/ui usage, and the `@/` alias setup.
   - **UX / UI:** judge it as a hiring manager with 60 seconds: are name, role, contact, resume download, key
     numbers and the projects visible immediately? Is motion restrained (no scroll-triggered, looping,

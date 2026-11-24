@@ -31,7 +31,7 @@ Paths below are relative to the site root (`/kiel-portfolio-2026/` on GitHub Pag
 - `src/components/ScrollManager.tsx` - scroll restoration, `#section` scrolling and focus on navigation
 - `src/components/Reveal.tsx`, `src/hooks/useReveal.ts` - one-time scroll fade-in (off under reduced motion and in print)
 - `src/components/ui/` - shadcn/ui primitives. `npx shadcn@latest add <name>` fails inside this folder (tslib);
-  run it from another folder with `-c "<path to Frontend>"`.
+  run it from another folder with `-c "<path to this project folder>"`.
 - `public/resume/Ezekiel-Bermudez-Resume.pdf` - downloadable resume
 
 ## Deploying (GitHub Pages)
