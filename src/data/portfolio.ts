@@ -16,7 +16,7 @@ export const portfolio: Portfolio = {
     title: 'Full Stack Developer',
     location: 'Philippines',
     email: 'kielbermudez200104@gmail.com',
-    phone: '+63 919 347 1522',
+    phone: '+63 949 720 2512',
     resumeUrl: '/resume/Ezekiel-Bermudez-Resume.pdf',
     summary:
       'Full Stack Developer with 5+ years of experience, from academic projects to today, building production systems for organizations, schools and small businesses through freelance and client work. I own projects end to end: frontend, backend, database design, server deployment, automated backups and testing.',
