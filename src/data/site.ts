@@ -59,7 +59,7 @@ export const ui = {
   },
   demoNotice: {
     title: 'About live demos',
-    body: "Some of these systems run in production for real clients, and others aren't publicly deployed yet, so I can't share public links or access. I'm happy to walk you through them in a live demo on my local machine (localhost) – just reach out.",
+    body: "Some of these systems run in production for real clients, and others aren't publicly deployed yet, so I can't share public links or access. I'm happy to walk you through them in a live demo on my local machine (localhost).",
     /** Compact notice on a project page. The reason there is no public link depends on the project's kind. */
     project: {
       'Client / Production': {
